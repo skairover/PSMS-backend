@@ -10,10 +10,22 @@ dotenv.config();
 
 const app = express();
 
+app.use(helmet());
+app.set('trust proxy', true);
+
+
+// ===== CORS (Allow frontend with credentials for cookies if needed) =====
 app.use(cors({
-  origin: 'https://team18.vercel.app', // replace with your Vercel URL
-  credentials: true, // if you are using cookies or auth
+  origin: ['http://localhost:5173', 'https://team18.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+const limiter = rateLimit({
+  windosMs: 15 * 60 * 1000,
+  max: 100,
+});
+app.use(limiter);
 app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));   
 
