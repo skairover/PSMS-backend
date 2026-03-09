@@ -20,11 +20,11 @@ app.set('trust proxy', true);
 app.use(cors({
   origin: ['http://localhost:5173', 'https://team18.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  credentials: true, // allow cookies/auth headers
 }));
 
 const limiter = rateLimit({
-  windoswMs: 15 * 60 * 1000,
+  windowMs: 15 * 60 * 1000,
   max: 100,
   trustProxy: true  
 });
