@@ -25,7 +25,6 @@ router.post('/register', async (req, res) => {
     const token = generateToken(newUser);
     res.status(201).json({ message: 'User registered successfully', token });
   } catch (err) {
-    console.error('Register error:', err);
     res.status(400).json({ error: "Couldn't create user" });
   }
 });
@@ -36,7 +35,6 @@ router.post('/login', async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-     console.log('[LOGIN] Fetched user:', user);
     if (!user) return res.status(400).json({ error: 'Invalid credentials' });
 
     if (!user.password) {
@@ -44,7 +42,6 @@ router.post('/login', async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log('[LOGIN] Password match:', isMatch);
     if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
 
     const token = generateToken(user);

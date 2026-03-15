@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const patientSchema = new mongoose.Schema({
   name: { type: String },
   age: {type: Number},
   condition: {type: String},
@@ -15,4 +15,4 @@ const userSchema = new mongoose.Schema({
   },
   { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Patient', patientSchema);

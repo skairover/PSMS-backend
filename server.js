@@ -31,7 +31,7 @@ app.use(limiter);
 app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));  
 app.use('/api/medicines', require('./routes/medicines')) 
-app.use('/api/patients', requie('./routes/patients'))
+app.use('/api/patients', require('./routes/patients'))
 
 app.get("/", (req, res) => {
   res.send("API running");
