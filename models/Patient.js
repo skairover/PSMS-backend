@@ -4,9 +4,9 @@ const patientSchema = new mongoose.Schema({
   name: { type: String },
   age: {type: Number},
   condition: {type: String},
-  doctor: {String},
-  arrival: {Date},
-  priority: {String},
+  doctor: {type: String},
+  arrival: {type: Date},
+  priority: {type: String},
   user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
